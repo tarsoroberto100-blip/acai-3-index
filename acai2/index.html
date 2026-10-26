@@ -2,8 +2,72 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Açaí Retrô Express - Versão BETA</title>
-    <link rel="stylesheet" href="estilo_inexistente_404.css">
+    <style>
+        :root {
+            --primary: #4a154b;
+            --secondary: #611f69;
+            --accent: #2eb67d;
+            --bg: #f8f5fa;
+            --card: #ffffff;
+            --text: #2d3748;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .container { 
+            max-width: 650px; 
+            margin: 0 auto; 
+            background: var(--card); 
+            border-radius: 16px; 
+            box-shadow: 0 10px 25px rgba(74, 21, 75, 0.1); 
+            overflow: hidden; 
+        }
+        header { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: white; 
+            padding: 25px 20px; 
+            text-align: center; 
+        }
+        header h1 { margin: 0; font-size: 1.8rem; }
+        header p { margin: 5px 0 0; opacity: 0.85; font-size: 0.95rem; }
+        .conteudo { padding: 25px; }
+        .secao-titulo { 
+            font-size: 1.1rem; 
+            color: var(--primary); 
+            border-bottom: 2px solid #edf2f7; 
+            padding-bottom: 8px; 
+            margin-bottom: 15px; 
+            font-weight: 600; 
+        }
+        .item-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 0; 
+            border-bottom: 1px dashed #e2e8f0; 
+            margin-bottom: 20px;
+        }
+        .btn-pedir { 
+            width: 100%; 
+            background-color: var(--accent); 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 8px; 
+            font-size: 1.1rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 15px; 
+            transition: opacity 0.2s;
+        }
+        .btn-pedir:hover { opacity: 0.9; }
+    </style>
 </head>
 <body>
 <div class="container">

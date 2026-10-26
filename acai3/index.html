@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Açaí Retrô Express - Versão GAMA</title>
     <style>
         :root {
@@ -27,7 +28,8 @@
         .linha-resumo { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
         .total-destaque { font-size: 1.3rem; font-weight: bold; color: var(--primary); border-top: 2px solid #cbd5e0; padding-top: 10px; margin-top: 10px; }
         .btn-pedir { width: 100%; background-color: var(--accent); color: white; border: none; padding: 15px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 15px; }
-</style>
+        .btn-pedir:hover { opacity: 0.9; }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -62,35 +64,41 @@
         </div>
 
         <div class="resumo-card">
-            <div class="linha-resumo"><span>Total a Pagar:</span><span id="txtTotal">R$ 23.00</span></div>
+            <div class="linha-resumo total-destaque">
+                <span>Total a Pagar:</span>
+                <span id="txtTotal">R$ 23,00</span>
+            </div>
         </div>
-        <button class="btn-pedir" onclick="alert('Enviado com sucesso!')">Finalizar Pedido</button>
+        <button class="btn-pedir" onclick="alert('Pedido enviado com sucesso!')">Finalizar Pedido</button>
     </div>
 </div>
 
 <script>
     function atualizarCalculos() {
         let precoBase = 18.00;
-        let qtdPacoca = parseInt(document.getElementById("qtdPacoca").value) || 0;
-        let cupom = document.getElementById("cupomInput").value;
+        let qtdPacoca = Math.max(0, parseInt(document.getElementById("qtdPacoca").value) || 0);
+        let taxaEntrega = parseFloat(document.getElementById("bairroEntrega").value) || 0;
+        let cupom = document.getElementById("cupomInput").value.trim().toUpperCase();
         
-        let taxaFixa = 5.00; 
-
-        let total = precoBase + (qtdPacoca * 2.00) + taxaFixa;
+        let total = precoBase + (qtdPacoca * 2.00) + taxaEntrega;
 
         if (cupom === "RETRO10") {
             total -= 10.00;
-        } else if (cupom === "retro10") {
-            total -= 20.00; 
         }
 
-        document.getElementById("txtTotal").innerText = "R$ " + total.toFixed(2);
+        if (total < 0) total = 0;
+
+        document.getElementById("txtTotal").innerText = total.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
     }
 
+    // Event Listeners
     document.getElementById("qtdPacoca").addEventListener("input", atualizarCalculos);
+    document.getElementById("bairroEntrega").addEventListener("change", atualizarCalculos);
     document.getElementById("cupomInput").addEventListener("input", atualizarCalculos);
-    // Nota: Esqueceu-se propositalmente de colocar Event Listener no bairroEntrega!
-    
+
     atualizarCalculos();
 </script>
 </body>
