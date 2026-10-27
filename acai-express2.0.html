@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cardápio online do Açaí Retrô Express - Monte seu açaí do seu jeito.">
     <title>Açaí Retrô Express - Cardápio</title>
+
+    <link rel="preconnect" href="https://encrypted-tbn0.gstatic.com">
+    <link rel="preconnect" href="https://http2.mlstatic.com">
+    <link rel="preconnect" href="https://st2.depositphotos.com">
+    <link rel="preconnect" href="https://granoladadedi.com.br">
+    <link rel="preconnect" href="https://i.metroimg.com">
+    <link rel="preconnect" href="https://www.emporiorosa.com.br">
+    <link rel="preconnect" href="https://www.diariodocentrodomundo.com.br">
+
     <style>
         :root {
             --primary: #4a154b;
             --secondary: #611f69;
-            --accent: #2eb67d;
+            --accent: #1e7e53;
             --bg: #f8f5fa;
             --card: #ffffff;
             --text: #2d3748;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
@@ -178,40 +188,40 @@
         
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvhaEqHBV5CKMbG17ux-lv7z5_GRVU5fmagQGAhr8tiGi7GUxmY4_ulbM&s=10" alt="Pequeno" class="item-foto">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvhaEqHBV5CKMbG17ux-lv7z5_GRVU5fmagQGAhr8tiGi7GUxmY4_ulbM&s=10" alt="Tigela Pequena" class="item-foto" width="55" height="55" fetchpriority="high" decoding="async">
                 <div class="item-info">
                     <strong>Tigela Pequena (300ml)</strong>
                     <span>R$ 14,00</span>
                 </div>
             </div>
             <label class="radio-opcao">
-                <input type="radio" name="tamanhoAcai" value="14" checked> Escolher
+                <input type="radio" name="tamanhoAcai" value="14" checked aria-label="Tigela Pequena 300ml"> Escolher
             </label>
         </div>
 
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfqihj2glioEejJ8QxqPeMnN1NAlVuwaXSbZag05858gxSoOAR9vl6pQgA&s=10" alt="Médio" class="item-foto">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfqihj2glioEejJ8QxqPeMnN1NAlVuwaXSbZag05858gxSoOAR9vl6pQgA&s=10" alt="Tigela Média" class="item-foto" width="55" height="55" loading="lazy" decoding="async">
                 <div class="item-info">
                     <strong>Tigela Média (500ml)</strong>
                     <span>R$ 18,00</span>
                 </div>
             </div>
             <label class="radio-opcao">
-                <input type="radio" name="tamanhoAcai" value="18"> Escolher
+                <input type="radio" name="tamanhoAcai" value="18" aria-label="Tigela Média 500ml"> Escolher
             </label>
         </div>
 
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://http2.mlstatic.com/D_NQ_NP_717667-MLB70996626166_082023-O.webp" alt="Grande" class="item-foto">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_717667-MLB70996626166_082023-O.webp" alt="Tigela Grande" class="item-foto" width="55" height="55" loading="lazy" decoding="async">
                 <div class="item-info">
                     <strong>Tigela Grande (700ml)</strong>
                     <span>R$ 22,00</span>
                 </div>
             </div>
             <label class="radio-opcao">
-                <input type="radio" name="tamanhoAcai" value="22"> Escolher
+                <input type="radio" name="tamanhoAcai" value="22" aria-label="Tigela Grande 700ml"> Escolher
             </label>
         </div>
 
@@ -220,64 +230,64 @@
 
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://st2.depositphotos.com/2387541/5798/i/950/depositphotos_57984009-stock-photo-aerial-view-of-milk-powder.jpg" alt="Leite em Pó" class="item-foto">
+                <img src="https://st2.depositphotos.com/2387541/5798/i/950/depositphotos_57984009-stock-photo-aerial-view-of-milk-powder.jpg" alt="Leite em Pó" class="item-foto" width="55" height="55" loading="lazy" decoding="async">
                 <div class="item-info">
-                    <strong>Leite em Pó</strong>
+                    <label for="qtdLeitePo"><strong>Leite em Pó</strong></label>
                     <span>R$ 2,50</span>
                 </div>
             </div>
-            <input type="number" id="qtdLeitePo" class="input-qtd" value="0" min="0">
+            <input type="number" id="qtdLeitePo" class="input-qtd" value="0" min="0" aria-label="Quantidade de Leite em Pó">
         </div>
 
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://granoladadedi.com.br/wp-content/uploads/2021/03/Granola-Tradicional-1x1-1.jpg" alt="Granola" class="item-foto">
+                <img src="https://granoladadedi.com.br/wp-content/uploads/2021/03/Granola-Tradicional-1x1-1.jpg" alt="Granola" class="item-foto" width="55" height="55" loading="lazy" decoding="async">
                 <div class="item-info">
-                    <strong>Granola</strong>
+                    <label for="qtdGranola"><strong>Granola</strong></label>
                     <span>R$ 2,00</span>
                 </div>
             </div>
-            <input type="number" id="qtdGranola" class="input-qtd" value="0" min="0">
+            <input type="number" id="qtdGranola" class="input-qtd" value="0" min="0" aria-label="Quantidade de Granola">
         </div>
 
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://i.metroimg.com/IpcWFlSilv143fOd9oTrJ4ROtXqsxpt90YTtzRPId44/w:600/q:85/f:webp/plain/https://images.metroimg.com/2025/12/04163148/Pacoca-sem-acucar-Pexels.jpg" alt="Paçoca" class="item-foto">
+                <img src="https://i.metroimg.com/IpcWFlSilv143fOd9oTrJ4ROtXqsxpt90YTtzRPId44/w:600/q:85/f:webp/plain/https://images.metroimg.com/2025/12/04163148/Pacoca-sem-acucar-Pexels.jpg" alt="Paçoca" class="item-foto" width="55" height="55" loading="lazy" decoding="async">
                 <div class="item-info">
-                    <strong>Paçoca</strong>
+                    <label for="qtdPacoca"><strong>Paçoca</strong></label>
                     <span>R$ 2,00</span>
                 </div>
             </div>
-            <input type="number" id="qtdPacoca" class="input-qtd" value="0" min="0">
+            <input type="number" id="qtdPacoca" class="input-qtd" value="0" min="0" aria-label="Quantidade de Paçoca">
         </div>
 
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://www.emporiorosa.com.br/media/tmp/webp/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/c/h/chips-morango-desidratado-granel-emporio-rosa_jpg.webp" alt="Morango" class="item-foto">
+                <img src="https://www.emporiorosa.com.br/media/tmp/webp/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/c/h/chips-morango-desidratado-granel-emporio-rosa_jpg.webp" alt="Morango" class="item-foto" width="55" height="55" loading="lazy" decoding="async">
                 <div class="item-info">
-                    <strong>Morango</strong>
+                    <label for="qtdMorango"><strong>Morango</strong></label>
                     <span>R$ 3,50</span>
                 </div>
             </div>
-            <input type="number" id="qtdMorango" class="input-qtd" value="0" min="0">
+            <input type="number" id="qtdMorango" class="input-qtd" value="0" min="0" aria-label="Quantidade de Morango">
         </div>
 
         <div class="item-row">
             <div class="item-detalhes">
-                <img src="https://www.diariodocentrodomundo.com.br/wp-content/uploads/2025/11/leite-condensado-caseiro-receita.jpg" alt="Leite Condensado" class="item-foto">
+                <img src="https://www.diariodocentrodomundo.com.br/wp-content/uploads/2025/11/leite-condensado-caseiro-receita.jpg" alt="Leite Condensado" class="item-foto" width="55" height="55" loading="lazy" decoding="async">
                 <div class="item-info">
-                    <strong>Leite Condensado</strong>
+                    <label for="qtdLeiteCondensado"><strong>Leite Condensado</strong></label>
                     <span>R$ 3,00</span>
                 </div>
             </div>
-            <input type="number" id="qtdLeiteCondensado" class="input-qtd" value="0" min="0">
+            <input type="number" id="qtdLeiteCondensado" class="input-qtd" value="0" min="0" aria-label="Quantidade de Leite Condensado">
         </div>
 
         <!-- 3. ENTREGA & CUPOM -->
         <div class="secao-titulo" style="margin-top: 25px;">3. Entrega & Cupom</div>
         
         <div class="item-row">
-            <div class="item-info"><strong>Bairro de Destino</strong></div>
+            <div class="item-info"><label for="bairroEntrega"><strong>Bairro de Destino</strong></label></div>
             <select id="bairroEntrega">
                 <option value="5">Centro (R$ 5,00)</option>
                 <option value="12">Zona Sul (R$ 12,00)</option>
@@ -286,7 +296,7 @@
         </div>
 
         <div class="item-row">
-            <div class="item-info"><strong>Cupom Promocional</strong></div>
+            <div class="item-info"><label for="cupomInput"><strong>Cupom Promocional</strong></label></div>
             <input type="text" id="cupomInput" placeholder="Ex: RETRO10">
         </div>
 
@@ -294,7 +304,7 @@
         <div class="resumo-card">
             <div class="linha-resumo total-destaque">
                 <span>Total a Pagar:</span>
-                <span id="txtTotal">R$ 19,00</span>
+                <span id="txtTotal" aria-live="polite">R$ 19,00</span>
             </div>
         </div>
 
@@ -303,16 +313,56 @@
 </div>
 
 <!-- MODAL / TELA INTUITIVA -->
-<div class="modal-overlay" id="modalOverlay">
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTexto">
     <div class="modal-content">
-        <div class="spinner" id="modalSpinner"></div>
-        <div class="modal-icone" id="modalIcone">✅</div>
+        <div class="spinner" id="modalSpinner" aria-hidden="true"></div>
+        <div class="modal-icone" id="modalIcone" aria-hidden="true">✅</div>
         <div class="modal-texto" id="modalTexto">Processando seu pedido...</div>
         <button class="btn-modal-fechar" id="btnModalFechar" onclick="fecharModal()">Novo Pedido</button>
     </div>
 </div>
 
 <script>
+    function salvarEstado() {
+        const tamanhoSelecionado = document.querySelector('input[name="tamanhoAcai"]:checked');
+        const estado = {
+            tamanhoAcai: tamanhoSelecionado ? tamanhoSelecionado.value : "14",
+            qtdLeitePo: document.getElementById("qtdLeitePo").value,
+            qtdGranola: document.getElementById("qtdGranola").value,
+            qtdPacoca: document.getElementById("qtdPacoca").value,
+            qtdMorango: document.getElementById("qtdMorango").value,
+            qtdLeiteCondensado: document.getElementById("qtdLeiteCondensado").value,
+            bairroEntrega: document.getElementById("bairroEntrega").value,
+            cupomInput: document.getElementById("cupomInput").value
+        };
+        localStorage.setItem("acai_pedido_estado", JSON.stringify(estado));
+    }
+
+    function carregarEstado() {
+        const estadoSalvo = localStorage.getItem("acai_pedido_estado");
+        if (!estadoSalvo) return;
+
+        try {
+            const estado = JSON.parse(estadoSalvo);
+
+            if (estado.tamanhoAcai) {
+                const radio = document.querySelector(`input[name="tamanhoAcai"][value="${estado.tamanhoAcai}"]`);
+                if (radio) radio.checked = true;
+            }
+
+            if (estado.qtdLeitePo !== undefined) document.getElementById("qtdLeitePo").value = estado.qtdLeitePo;
+            if (estado.qtdGranola !== undefined) document.getElementById("qtdGranola").value = estado.qtdGranola;
+            if (estado.qtdPacoca !== undefined) document.getElementById("qtdPacoca").value = estado.qtdPacoca;
+            if (estado.qtdMorango !== undefined) document.getElementById("qtdMorango").value = estado.qtdMorango;
+            if (estado.qtdLeiteCondensado !== undefined) document.getElementById("qtdLeiteCondensado").value = estado.qtdLeiteCondensado;
+            if (estado.bairroEntrega !== undefined) document.getElementById("bairroEntrega").value = estado.bairroEntrega;
+            if (estado.cupomInput !== undefined) document.getElementById("cupomInput").value = estado.cupomInput;
+
+        } catch (e) {
+            console.error("Erro ao carregar dados do LocalStorage:", e);
+        }
+    }
+
     function atualizarCalculos() {
         let precoBase = parseFloat(document.querySelector('input[name="tamanhoAcai"]:checked').value) || 14.00;
 
@@ -343,6 +393,8 @@
             style: "currency",
             currency: "BRL"
         });
+
+        salvarEstado();
     }
 
     function processarPedido() {
@@ -358,12 +410,13 @@
         texto.innerText = "Processando seu pedido...";
         btnFechar.style.display = "none";
 
-        // Delay de 8 segundos
         setTimeout(() => {
             spinner.style.display = "none";
             icone.style.display = "block";
             texto.innerText = "Pedido Concluído com Sucesso! 🍧";
             btnFechar.style.display = "block";
+            
+            localStorage.removeItem("acai_pedido_estado");
         }, 8000);
     }
 
@@ -385,7 +438,11 @@
     document.getElementById("bairroEntrega").addEventListener("change", atualizarCalculos);
     document.getElementById("cupomInput").addEventListener("input", atualizarCalculos);
 
-    atualizarCalculos();
+    // Inicialização ao carregar a página
+    window.addEventListener("DOMContentLoaded", () => {
+        carregarEstado();
+        atualizarCalculos();
+    });
 </script>
 
 </body>
