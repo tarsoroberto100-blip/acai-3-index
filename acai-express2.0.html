@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Açaí Retrô Express - Cardápio</title>
+    <style>
+        :root {
+            --primary: #4a154b;
+            --secondary: #611f69;
+            --accent: #2eb67d;
+            --bg: #f8f5fa;
+            --card: #ffffff;
+            --text: #2d3748;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(74, 21, 75, 0.1);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        header h1 { margin: 0; font-size: 1.8rem; }
+        header p { margin: 5px 0 0; opacity: 0.85; font-size: 0.95rem; }
+        .conteudo { padding: 25px; }
+        .secao-titulo {
+            font-size: 1.1rem;
+            color: var(--primary);
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            gap: 12px;
+        }
+        .item-detalhes {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+        .item-foto {
+            width: 55px;
+            height: 55px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid #edf2f7;
+        }
+        .item-info { display: flex; flex-direction: column; }
+        .item-info strong { font-size: 0.98rem; color: var(--text); }
+        .item-info span { font-size: 0.85rem; color: #718096; }
+
+        input[type="number"], input[type="text"], select {
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+        .input-qtd { width: 75px; text-align: center; font-weight: bold; }
+        
+        .radio-opcao {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .radio-opcao input { accent-color: var(--primary); cursor: pointer; }
+
+        .resumo-card {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+        .linha-resumo { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
+        .total-destaque {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            border-top: 2px solid #cbd5e0;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .btn-pedir {
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: opacity 0.2s;
+        }
+        .btn-pedir:hover { opacity: 0.9; }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 45px; height: 45px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .modal-icone { font-size: 45px; margin-bottom: 15px; display: none; }
+        .modal-texto { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 20px; }
+        .btn-modal-fechar {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🍧 Açaí Retrô Express</h1>
+        <p>Monte seu açaí do seu jeito!</p>
+    </header>
+
+    <div class="conteudo">
+        <!-- 1. TAMANHOS DE AÇAÍ -->
+        <div class="secao-titulo">1. Escolha o Tamanho do Açaí</div>
+        
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvhaEqHBV5CKMbG17ux-lv7z5_GRVU5fmagQGAhr8tiGi7GUxmY4_ulbM&s=10" alt="Pequeno" class="item-foto">
+                <div class="item-info">
+                    <strong>Tigela Pequena (300ml)</strong>
+                    <span>R$ 14,00</span>
+                </div>
+            </div>
+            <label class="radio-opcao">
+                <input type="radio" name="tamanhoAcai" value="14" checked> Escolher
+            </label>
+        </div>
+
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfqihj2glioEejJ8QxqPeMnN1NAlVuwaXSbZag05858gxSoOAR9vl6pQgA&s=10" alt="Médio" class="item-foto">
+                <div class="item-info">
+                    <strong>Tigela Média (500ml)</strong>
+                    <span>R$ 18,00</span>
+                </div>
+            </div>
+            <label class="radio-opcao">
+                <input type="radio" name="tamanhoAcai" value="18"> Escolher
+            </label>
+        </div>
+
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_717667-MLB70996626166_082023-O.webp" alt="Grande" class="item-foto">
+                <div class="item-info">
+                    <strong>Tigela Grande (700ml)</strong>
+                    <span>R$ 22,00</span>
+                </div>
+            </div>
+            <label class="radio-opcao">
+                <input type="radio" name="tamanhoAcai" value="22"> Escolher
+            </label>
+        </div>
+
+        <!-- 2. ACOMPANHAMENTOS EXTRAS -->
+        <div class="secao-titulo" style="margin-top: 25px;">2. Acompanhamentos Extras</div>
+
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://st2.depositphotos.com/2387541/5798/i/950/depositphotos_57984009-stock-photo-aerial-view-of-milk-powder.jpg" alt="Leite em Pó" class="item-foto">
+                <div class="item-info">
+                    <strong>Leite em Pó</strong>
+                    <span>R$ 2,50</span>
+                </div>
+            </div>
+            <input type="number" id="qtdLeitePo" class="input-qtd" value="0" min="0">
+        </div>
+
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://granoladadedi.com.br/wp-content/uploads/2021/03/Granola-Tradicional-1x1-1.jpg" alt="Granola" class="item-foto">
+                <div class="item-info">
+                    <strong>Granola</strong>
+                    <span>R$ 2,00</span>
+                </div>
+            </div>
+            <input type="number" id="qtdGranola" class="input-qtd" value="0" min="0">
+        </div>
+
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://i.metroimg.com/IpcWFlSilv143fOd9oTrJ4ROtXqsxpt90YTtzRPId44/w:600/q:85/f:webp/plain/https://images.metroimg.com/2025/12/04163148/Pacoca-sem-acucar-Pexels.jpg" alt="Paçoca" class="item-foto">
+                <div class="item-info">
+                    <strong>Paçoca</strong>
+                    <span>R$ 2,00</span>
+                </div>
+            </div>
+            <input type="number" id="qtdPacoca" class="input-qtd" value="0" min="0">
+        </div>
+
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://www.emporiorosa.com.br/media/tmp/webp/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/c/h/chips-morango-desidratado-granel-emporio-rosa_jpg.webp" alt="Morango" class="item-foto">
+                <div class="item-info">
+                    <strong>Morango</strong>
+                    <span>R$ 3,50</span>
+                </div>
+            </div>
+            <input type="number" id="qtdMorango" class="input-qtd" value="0" min="0">
+        </div>
+
+        <div class="item-row">
+            <div class="item-detalhes">
+                <img src="https://www.diariodocentrodomundo.com.br/wp-content/uploads/2025/11/leite-condensado-caseiro-receita.jpg" alt="Leite Condensado" class="item-foto">
+                <div class="item-info">
+                    <strong>Leite Condensado</strong>
+                    <span>R$ 3,00</span>
+                </div>
+            </div>
+            <input type="number" id="qtdLeiteCondensado" class="input-qtd" value="0" min="0">
+        </div>
+
+        <!-- 3. ENTREGA & CUPOM -->
+        <div class="secao-titulo" style="margin-top: 25px;">3. Entrega & Cupom</div>
+        
+        <div class="item-row">
+            <div class="item-info"><strong>Bairro de Destino</strong></div>
+            <select id="bairroEntrega">
+                <option value="5">Centro (R$ 5,00)</option>
+                <option value="12">Zona Sul (R$ 12,00)</option>
+                <option value="8">Zona Norte (R$ 8,00)</option>
+            </select>
+        </div>
+
+        <div class="item-row">
+            <div class="item-info"><strong>Cupom Promocional</strong></div>
+            <input type="text" id="cupomInput" placeholder="Ex: RETRO10">
+        </div>
+
+        <!-- RESUMO -->
+        <div class="resumo-card">
+            <div class="linha-resumo total-destaque">
+                <span>Total a Pagar:</span>
+                <span id="txtTotal">R$ 19,00</span>
+            </div>
+        </div>
+
+        <button class="btn-pedir" onclick="processarPedido()">Finalizar Pedido</button>
+    </div>
+</div>
+
+<!-- MODAL / TELA INTUITIVA -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <div class="spinner" id="modalSpinner"></div>
+        <div class="modal-icone" id="modalIcone">✅</div>
+        <div class="modal-texto" id="modalTexto">Processando seu pedido...</div>
+        <button class="btn-modal-fechar" id="btnModalFechar" onclick="fecharModal()">Novo Pedido</button>
+    </div>
+</div>
+
+<script>
+    function atualizarCalculos() {
+        let precoBase = parseFloat(document.querySelector('input[name="tamanhoAcai"]:checked').value) || 14.00;
+
+        let qtdLeitePo = Math.max(0, parseInt(document.getElementById("qtdLeitePo").value) || 0);
+        let qtdGranola = Math.max(0, parseInt(document.getElementById("qtdGranola").value) || 0);
+        let qtdPacoca = Math.max(0, parseInt(document.getElementById("qtdPacoca").value) || 0);
+        let qtdMorango = Math.max(0, parseInt(document.getElementById("qtdMorango").value) || 0);
+        let qtdLeiteCondensado = Math.max(0, parseInt(document.getElementById("qtdLeiteCondensado").value) || 0);
+
+        let totalAcompanhamentos = (qtdLeitePo * 2.50) + 
+                                   (qtdGranola * 2.00) + 
+                                   (qtdPacoca * 2.00) + 
+                                   (qtdMorango * 3.50) + 
+                                   (qtdLeiteCondensado * 3.00);
+
+        let taxaEntrega = parseFloat(document.getElementById("bairroEntrega").value) || 0;
+        let cupom = document.getElementById("cupomInput").value.trim().toUpperCase();
+
+        let total = precoBase + totalAcompanhamentos + taxaEntrega;
+
+        if (cupom === "RETRO10") {
+            total -= 10.00;
+        }
+
+        if (total < 0) total = 0;
+
+        document.getElementById("txtTotal").innerText = total.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
+    }
+
+    function processarPedido() {
+        const overlay = document.getElementById("modalOverlay");
+        const spinner = document.getElementById("modalSpinner");
+        const icone = document.getElementById("modalIcone");
+        const texto = document.getElementById("modalTexto");
+        const btnFechar = document.getElementById("btnModalFechar");
+
+        overlay.style.display = "flex";
+        spinner.style.display = "block";
+        icone.style.display = "none";
+        texto.innerText = "Processando seu pedido...";
+        btnFechar.style.display = "none";
+
+        // Delay de 8 segundos
+        setTimeout(() => {
+            spinner.style.display = "none";
+            icone.style.display = "block";
+            texto.innerText = "Pedido Concluído com Sucesso! 🍧";
+            btnFechar.style.display = "block";
+        }, 8000);
+    }
+
+    function fecharModal() {
+        document.getElementById("modalOverlay").style.display = "none";
+    }
+
+    // Event Listeners
+    document.querySelectorAll('input[name="tamanhoAcai"]').forEach(radio => {
+        radio.addEventListener("change", atualizarCalculos);
+    });
+    
+    document.getElementById("qtdLeitePo").addEventListener("input", atualizarCalculos);
+    document.getElementById("qtdGranola").addEventListener("input", atualizarCalculos);
+    document.getElementById("qtdPacoca").addEventListener("input", atualizarCalculos);
+    document.getElementById("qtdMorango").addEventListener("input", atualizarCalculos);
+    document.getElementById("qtdLeiteCondensado").addEventListener("input", atualizarCalculos);
+    
+    document.getElementById("bairroEntrega").addEventListener("change", atualizarCalculos);
+    document.getElementById("cupomInput").addEventListener("input", atualizarCalculos);
+
+    atualizarCalculos();
+</script>
+
+</body>
+</html>
